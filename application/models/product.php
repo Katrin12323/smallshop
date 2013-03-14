@@ -104,4 +104,16 @@ class product extends CI_Model{
 		}	
 	}
 	
+	/**This method inserts product in the data base*/
+	public function insert($title, $desc, $price)
+	{
+		//Values to be inserted
+		$data = Array(
+					'item_title' => $title,
+					'item_desc' => $desc,
+					'item_price' => $price );
+		
+		$this->db->insert('shop_items', $data);
+	}
+	
 }

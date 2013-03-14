@@ -49,7 +49,33 @@ class shop extends CI_Controller {
 		
 		$this->load->view('includes/header');
 		$this->load->view('product_list', $data);
-		$this->load->view('includes/footer');
+		$this->load->view('includes/footer');	
+	}
 	
+	/**The method showing the insert form*/
+	public function product_insert()
+	{
+		$this->load->view('includes/header');
+		$this->load->view('product_insert');
+		$this->load->view('includes/footer');	
+	}
+	
+	/**This method will add the product to the database and forward to hte list page*/
+	public function add_product()
+	{
+		//Form values
+		$title = $this->input->post('title');
+		$desc = $this->input->post('desc');
+		$price = $this->input->post('price');
+		
+		if(isset($title) && isset($desc) && is_numeric($price))
+		{
+			$this->load->model('product');
+			
+			//ToDo: May be check for success
+			$this->product->insert($title, $desc, floatval($price));
+		}
+		
+		redirect('/shop/products_list/', 'location');
 	}
 }
