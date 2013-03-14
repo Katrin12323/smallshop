@@ -78,4 +78,40 @@ class shop extends CI_Controller {
 		
 		redirect('/shop/products_list/', 'location');
 	}
+	
+	/**This method will display the users cart content*/
+	public function cart_content()
+	{
+		$this->load->view('includes/header');
+			
+		//This is just for test, so our cart won't be empty
+		$test = array(
+               array(
+                       'id'      => 'sku_123ABC',
+                       'qty'     => 1,
+                       'price'   => 39.95,
+                       'name'    => 'T-Shirt',
+                       'options' => array('Size' => 'L', 'Color' => 'Red')
+                    ),
+               array(
+                       'id'      => 'sku_567ZYX',
+                       'qty'     => 2,
+                       'price'   => 9.95,
+                       'name'    => 'Coffee Mug'
+                    ),
+               array(
+                       'id'      => 'sku_965QRS',
+                       'qty'     => 1,
+                       'price'   => 29.95,
+                       'name'    => 'Shot Glass'
+                    )
+            );
+
+		$this->cart->insert($test); 
+		
+		$data['content'] = $this->cart->contents();
+		$this->load->view('cart_content', $data);
+
+		$this->load->view('includes/footer');
+	}
 }

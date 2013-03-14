@@ -43,3 +43,13 @@
 	height:auto;
 	border: 2px solid green;
 }
+
+#products{
+	position: absolute;
+	top: 150px;
+	margin: 1em, 2em, 3em;
+	left:15%;
+	width: 400px;
+	height:auto;
+	border: 2px solid green;
+}
